@@ -15,10 +15,10 @@ const UserForm = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Push a custom event to the dataLayer
+    // Push an event to the dataLayer for GTM
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'formSubmission',
@@ -30,28 +30,7 @@ const UserForm = () => {
       },
     });
 
-    const apiKey = 'your-api-key-here'; // Replace with your actual API key
-    const apiUrl = 'https://api.example.com/submit'; // Replace with your actual API URL
-
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const result = await response.json();
-      console.log('Form successfully submitted:', result);
-    } catch (error) {
-      console.error('There was a problem with the submission:', error);
-    }
+    console.log('Form submitted:', formData);
   };
 
   return (

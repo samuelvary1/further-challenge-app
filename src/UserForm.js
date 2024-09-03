@@ -25,6 +25,7 @@ const UserForm = () => {
     setLoading(true);
 
     try {
+      // had to set up a proxy server because Zapier threw a CORS error when I tried to hit the webhook
       const response = await fetch('http://localhost:3001/proxy-to-zapier', {
         method: 'POST',
         headers: {

@@ -42,6 +42,20 @@ const UserForm = () => {
           email: '',
           phone: '',
         });
+
+        // Trigger Google Tag Manager event
+        if (window.dataLayer) {
+          window.dataLayer.push({
+            event: 'formSubmission',
+            formData: {
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              email: formData.email,
+              phone: formData.phone,
+            },
+          });
+        }
+
       } else {
         setError('Form submission failed.');
         setSuccess('');
@@ -56,7 +70,7 @@ const UserForm = () => {
 
   return (
     <div style={{ maxWidth: '400px', margin: '0 auto', padding: '20px', backgroundColor: '#f9f9f9', borderRadius: '10px' }}>
-      <h2 style={{ textAlign: 'center', fontFamily: 'papyrus', marginBottom: '20px' }}>Simple User Form</h2>
+      <h2 style={{ textAlign: 'center', fontFamily: "'Nerko One', cursive", marginBottom: '20px' }}>Simple User Form</h2>
       <form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
         <div className="mb-3">
           <label className="form-label">First Name:</label>
